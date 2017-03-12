@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>webstorage test</title>
+</head>
+<body>
+	<p id="msg"></p>
+	<input type="text" id="vv">
+	<input type="button" value="保存数据" onclick="saveStorage('vv')">
+	<input type="button" value="读取数据" onclick="loadStorage('msg')">
+	<script>
+		// function saveStorage(id){
+		// 	var target = document.getElementById(id);
+		// 	var str = target.value;
+		// 	sessionStorage.setItem('message',str) 
+		// }
+		// function loadStorage(id){
+		// 	var target = document.getElementById(id);
+		// 	var msg = sessionStorage.getItem('message');
+		// 	target.innerHTML = msg;
+		// }
+
+		function saveStorage(id){
+			var target = document.getElementById(id);
+			var str = target.value;
+			localStorage.setItem('message',str);
+		}
+		function loadStorage(id){
+			var target = document.getElementById(id);
+			var str = localStorage.getItem('message');
+			target.innerHTML = str;
+		}
+	</script>
+</body>
+</html>
