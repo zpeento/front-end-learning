@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟一个简单的数据库</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>姓名</td>
+			<td><input type="text" id="name"></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="text" id="email"></td>
+		</tr>
+		<tr>
+			<td>电话号码</td>
+			<td><input type="text" id="tel"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="button" value="保存" id="save" onclick="save()"></td>
+		</tr>
+	</table>
+	<hr>
+	<p>检索<input type="text" id="find"><input type="button" value="检索" onclick="find()"></p>
+	<p id="msg"></p>
+
+	<script>
+		function save(){
+			var data = new Object;
+			data.name=document.getElementById("name").value;
+			data.email=document.getElementById("email").value;
+			data.tel=document.getElementById('tel').value;
+
+			var str = JSON.stringify(data);
+			localStorage.setItem(data.name,str);
+			alert('ok')
+		}
+
+		function find(){
+			var find = document.getElementById('find').value;
+			console.log(find)
+			var str = localStorage.getItem(find);
+			console.log(str)
+			var data=JSON.parse(str);
+			console.log(data)
+			var result = '姓名:'+data.name+'</br>';
+			result += '邮箱:'+data.email+'</br>';
+			result += '电话:'+data.tel;
+			var target = document.getElementById('msg');
+			target.innerHTML=result;
+		}
+	</script>
+</body>
+</html>
