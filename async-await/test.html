@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>async/await学习</title>
+</head>
+<body>
+	<script>
+		// 测试1
+		// async function testAsync() {
+		// 	// return 'hello async';
+		// }
+
+		// const result = testAsync();
+		// console.log(result)
+		//当没有返回值的时候返回值为undefind
+		//形如Promise{state:fulfilled,value:undefined}
+		//返回一个state为fulfilled的promise对象
+
+
+		// 测试2
+		// function getSomething() {
+		// 	return "something"
+		// }
+
+		// async function testAsync() {
+		// 	return Promise.resolve("hello async")
+		// }
+
+		// async function test(){
+		// 	const v1 = await getSomething();
+		// 	const v2 = await testAsync();
+		//  v2是在等待返回的Promise对象的返回值
+		// 	console.log(v1,v2);
+		// }
+		// test()
+		//await实际在等返回值，不仅仅可用于Promise，可以等于任意表达式的结果，所以await实际可以接普通函数调用或者直接量。
+		//如果await等到的是Promise对象，await会阻塞后面的代码，等着Promise对象resolve,然后得到resolve的值，作为await表达式的运算结果
+		//await会阻塞，但async不会阻塞，它内部所有的阻塞都被封装在一个Promise中异步执行
+
+		//测试3
+		//使用setTimeout模拟耗时的异步操作
+		//不使用async/await时
+		// function takeLongTime(){
+		// 	return new Promise(resolve=>{
+		// 		setTimeout(()=>resolve("long_time_value"),1000)
+		// 	});
+		// }
+
+		// takeLongTime().then(v=>{console.log("got",v)})
+
+		//使用async/await时
+		// function takeLongTimeAsync(){
+		// 	return new Promise(resolve=>{
+		// 		setTimeout(()=>resolve("long_time_value"))
+		// 	})
+		// }
+
+		// async function test() {
+		// 	const v = await takeLongTime();
+		// 	console.log(v)
+		// }
+		// test();
+
+		//async/await的优势主要体现在处理then链
+
+		//假设一个业务，分多个步骤完成，每个步骤都是异步，且都依赖于上一个步骤的结果
+
+		// await 命令后面的 Promise 对象，运行结果可能是 rejected，所以最好把 await 命令放在 try...catch 代码块中。
+
+		// async function myFunction() {
+		//   try {
+		//     await somethingThatReturnsAPromise();
+		//   } catch (err) {
+		//     console.log(err);
+		//   }
+		// }
+
+		// // 另一种写法
+
+		// async function myFunction() {
+		//   await somethingThatReturnsAPromise().catch(function (err){
+		//     console.log(err);
+		//   });
+		// }
+	</script>
+</body>
+</html>
