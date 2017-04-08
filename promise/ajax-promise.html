@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用ajax对象实现AJAX</title>
+</head>
+<body>
+	<script>
+		var getJSON = function(url) {
+			var promise = new Promise(function(resolve,reject){
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET",url);
+				xhr.onreadystatechange = handler;
+				xhr.responseType = "json";
+				xhr.setRequestHeader("Accept","application/json");
+				xhr.send();
+
+				function handler() {
+					if (xhr.readyState !== 4){
+						return;
+					}
+					if (xhr.status == 200) {
+						resolve(xhr.response);
+					}else{
+						reject(new Error(xhr.statusText))
+					}
+				}
+			})
+
+			return promise;
+		}
+		getJSON("/posts.json").then(function(json){
+			console.log('Contents:' + json);
+		},function(error){
+			console.error('出错了',error);
+		})
+	</script>
+</body>
+</html>
