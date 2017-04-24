@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mutation Observer</title>
+</head>
+<body>
+	<script>
+	    //下面的表达式检查当前浏览器是否支持这个API。
+		var MutationObserver = window.MutationObserver
+  			|| window.WebKitMutationObserver
+  			|| window.MozMutationObserver;
+
+		var observeMutationSupport = !!MutationObserver;
+		console.log(MutationObserver)
+	</script>
+	
+</body>
+</html>

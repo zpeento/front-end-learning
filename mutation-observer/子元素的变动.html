@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>子元素变动</title>
+</head>
+<body>
+	<script>
+		var callback = function(records){
+			records.map(function(record){
+				console.log('Mutation type: ' + record.type)
+				console.log('Mutation target: ' + record.target)
+			})
+		}
+
+		var mo = new MutationObserver(callback);
+
+		var option = {
+			'childList': true,
+  			'subtree': true
+		}
+
+		mo.observe(document.body, option);
+
+		// 上面代码的观察器，观察<body>的所有下级节点（childList表示观察子节点，subtree表示观察后代节点）的变动。回调函数会在控制台显示所有变动的类型和目标节点。
+	</script>
+</body>
+</html>

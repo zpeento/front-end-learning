@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性的变动</title>
+</head>
+<body>
+	<script>
+		var callback = function (records) {
+		  records.map(function (record) {
+		    console.log('Previous attribute value: ' + record.oldValue);
+		  });
+		};
+
+		var mo = new MutationObserver(callback);
+
+		var element = document.getElementById('#my_element');
+
+		var options = {
+		  'attributes': true,
+		  'attributeOldValue': true
+		}
+
+		mo.observe(element, options);
+	</script>
+	
+</body>
+</html>
