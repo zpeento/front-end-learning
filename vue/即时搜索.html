@@ -80,13 +80,17 @@
 	        <input type="text" v-model="searchStr" placeholder="Enter your search terms" />
 	    </div>
 	    <ul>
-	        <li v-for="a in articles | searchFor">
+	    	<!-- <li v-for="a in articles"> -->
+	        <li v-for="a in searchForArticles">
 	            <a :href="a.url"><img :src="a.image" /></a>
 	            <p>{{a.title}}</p>
 	        </li>
 	    </ul>
 	</div>
 	<script>
+		// Vue.filter('searchFor', function (value) {
+		//     return value+'ahh'
+		// });
 		var demo = new Vue({
 		    el: '#main',
 		    data: {
@@ -124,21 +128,36 @@
 		            }
 		        ]
 		    },
-		    methods: {
-		    	searchFor : function(value, searchStr){
-		    		var result = [];
-				    if(!searchStr){
-				        return value;
-				    }
-				    searchStr = searchStr.trim().toLowerCase();
-				    result = value.filter(function(item){
-				        if(item.title.toLowerCase().indexOf(searchStr) !== -1){
+		    computed: {
+		    	searchForArticles : function(){
+		    		var self = this;
+				    // if(!self.searchStr){
+				    //     return a;
+				    // }
+				    var searchStr = self.searchStr.trim().toLowerCase();
+				    var result = self.articles.filter(function(item){
+				        if(item.title.toLowerCase().indexOf(searchStr) != -1){
 				            return item;
 				        }
 				    });
 				    return result;
 		    	}
 		    }
+		    // filters: {
+		    // 	searchFor : function(value, searchStr){
+		    // 		var result = [];
+				  //   if(!searchStr){
+				  //       return value;
+				  //   }
+				  //   searchStr = searchStr.trim().toLowerCase();
+				  //   result = value.filter(function(item){
+				  //       if(item.title.toLowerCase().indexOf(searchStr) !== -1){
+				  //           return item;
+				  //       }
+				  //   });
+				  //   return result;
+		    // 	}
+		    // }
 		});
 	</script>
 </body>
