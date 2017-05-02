@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用intersection-observer实现懒加载</title>
+</head>
+<body>
+	<script>
+		function query(selector) {
+			return Array.from(document.querySelectorAll(selector))
+		}
+
+		var observer = new IntersectionObserver(function(changes){
+			changes.forEach(function(change){
+				//通过targer属性获取变动的DOM
+				var container = change.target;
+				var content = container.querySelector('template').content;
+				container.appendChild(content);
+				observer.unobserver(container);
+			})
+		})
+
+		query('.lazy-loaded').forEach(function (item) {
+			observer.observe(item)
+		})
+
+		//上面代码中，只有目标区域可见时，才会将模板内容插入真实DOM，从而引发静态资源的加载;
+	</script>
+	
+</body>
+</html>
