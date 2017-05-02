@@ -8,7 +8,60 @@
 	<script>
 		var io = new IntersectionObserver(callback,option);
 		// IntersectionObserver是浏览器原生提供的构造函数，接受两个参数：callback是可见性变化时的回调函数，option是配置对象（该参数可选）。
+
+		//开始观察
 		io.observe(document.getElementById('example'));
+		//停止观察
+		io.unobserve(element);
+		//关闭观察器
+		io.disconnect();
+
+		//如果要观察多个节点，则要多次调用这个方法
+		io.observe(elementA)
+		io.observe(elementB)
+
+		var io = new IntersectionObserver(
+			entries => {
+				console.log(entries)
+			}
+		)
+		// callback函数的参数（entries）是一个数组，每个成员都是一个IntersectionObserverEntry对象。举例来说，如果同时有两个被观察的对象的可见性发生变化，entries数组就会有两个成员。
+
+		//
+		// 三、IntersectionObserverEntry 对象
+		//
+
+		// IntersectionObserverEntry对象提供目标元素的信息，一共有六个属性。
+		var options = {
+			//可见性发生变化的时间，单位为毫秒
+			time: 3893.92,
+
+			//根元素的矩形区域的信息
+			rootBounds: ClientRect {
+				bottom: 920,
+				height: 1024,
+				left: 0,
+				right: 1024,
+				top: 0,
+				width; 920
+			},
+
+			//目标元素的矩形区域的信息
+			boundingClientRect: ClientRect {
+				//...
+			},
+
+			//目标元素与视口区域信息
+			intersectionRect: ClientRect {
+				//...
+			},
+
+			//目标元素的可见比例，即intersection占boundingClientRect的比例的信息，完全可见时为1，完全不可见时小于等于0
+			intersectionRatio: 0.54,
+
+			//被观察的对象，是一个DOM节点对象
+			target:element
+		}
 	</script>
 </body>
 </html>

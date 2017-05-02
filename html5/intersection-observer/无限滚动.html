@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无限滚动</title>
+</head>
+<body>
+	<script>
+		var intersectionObserver = new IntersectionObserver(function (entries) {
+			if(entries[0].intersectionRation <= 0)return;
+			loadItems(10);
+			console.log('Loaded new items');
+		})
+
+		//开始观察
+		intersectionObserver.observer(document.querySelector('.scrollerFooter'))
+		// 无限滚动时，最好在页面底部有一个页尾栏（又称sentinels）。一旦页尾栏可见，就表示用户到达了页面底部，从而加载新的条目放在页尾栏前面。这样做的好处是，不需要再一次调用observe()方法，现有的IntersectionObserver可以保持使用。
+	</script>
+</body>
+</html>
