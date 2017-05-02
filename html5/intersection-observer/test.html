@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Get Started</title>
+</head>
+<body>
+	<script>
+		var io = new IntersectionObserver(callback,option);
+		// IntersectionObserver是浏览器原生提供的构造函数，接受两个参数：callback是可见性变化时的回调函数，option是配置对象（该参数可选）。
+		io.observe(document.getElementById('example'));
+	</script>
+</body>
+</html>
