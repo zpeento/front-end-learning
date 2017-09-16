@@ -13,15 +13,19 @@ module.exports = {
 	},
 
 	module: {
-		rules: [
-			{
-				test: /(\.jsx|\.js)$/,
-				use: {
-					loader: "babel-loader",
-					presets: ["es2015", "react"]
-				},
-				exclude: /node_modules/
-			}
-		]
-	}
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            "es2015", "react"
+                        ]
+                    }
+                },
+                exclude: /node_modules/
+            }
+        ]
+    }
 }
